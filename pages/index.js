@@ -1,26 +1,35 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Navbar from './components/Navbar'
-export default function Home() {
-  return (
-    <div className={styles.container}>
+
+export default function Home({ products }) {
+
+  console.log(products)
+  const productList = products.map(product => {
+    return (
       
-      <Head>
-        <title>Dplace commerce site </title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h3 className={styles.title}>
-          Welcome to DPLACE commerce Store!
-        </h3>
-
+      <div className="cardcustSize " key={product.id}>
+        <div >
+          <img src={product.imgurl} width="10%" />
+          <span>{product.title}</span>
+        </div>
+        <div >
+          <p><label>Price</label>{product.price}</p>
+          
+          <a href="#">Add to Cart</a>
         
-
+        </div>
         
-             
-        
-      </main>
+      </div>
+     
+    )
+  })
+  return (
+    <div  className={styles.container}>
+    
+   {productList}
+      
+      
 
       <footer className={styles.footer}>
         <a
@@ -34,4 +43,15 @@ export default function Home() {
       </footer>
     </div>
   )
+
+}
+export async function getStaticProps() {
+  const res = await fetch('http://dplace.herokuapp.com/products')
+  const data = await res.json();
+  return {
+    props: {
+      products: data
+    }
+  }
+
 }

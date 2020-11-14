@@ -82,7 +82,7 @@
 
 .card {
   margin: 1rem;
-  flex-basis: 45%;
+  flex-basis: 45%;  
   padding: 1.5rem;
   text-align: left;
   color: inherit;
@@ -90,6 +90,10 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
+}
+.custSize{
+  max-width: 40%;
+  margin: 20px;
 }
 
 .card:hover,
@@ -112,6 +116,10 @@
 
 .logo {
   height: 6em;
+}
+.rootcard{
+  display: flex;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 600px) {
